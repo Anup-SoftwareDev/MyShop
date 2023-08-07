@@ -13,6 +13,8 @@
 		CA9054EE2A7D1ED0005A832F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA9054EC2A7D1ED0005A832F /* Main.storyboard */; };
 		CA9054F02A7D1ED1005A832F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA9054EF2A7D1ED1005A832F /* Assets.xcassets */; };
 		CA9054F32A7D1ED1005A832F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA9054F12A7D1ED1005A832F /* LaunchScreen.storyboard */; };
+		CA9054FE2A7E489F005A832F /* ProductCellCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9054FC2A7E489F005A832F /* ProductCellCVCell.swift */; };
+		CA9054FF2A7E489F005A832F /* ProductCellCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9054FD2A7E489F005A832F /* ProductCellCVCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		CA9054EF2A7D1ED1005A832F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA9054F22A7D1ED1005A832F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA9054F42A7D1ED1005A832F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA9054FC2A7E489F005A832F /* ProductCellCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellCVCell.swift; sourceTree = "<group>"; };
+		CA9054FD2A7E489F005A832F /* ProductCellCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCellCVCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				CA9054F12A7D1ED1005A832F /* LaunchScreen.storyboard */,
 				CA9054EF2A7D1ED1005A832F /* Assets.xcassets */,
 				CA9054F42A7D1ED1005A832F /* Info.plist */,
+				CA9054FC2A7E489F005A832F /* ProductCellCVCell.swift */,
+				CA9054FD2A7E489F005A832F /* ProductCellCVCell.xib */,
 			);
 			path = MyShop;
 			sourceTree = "<group>";
@@ -125,6 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA9054FF2A7E489F005A832F /* ProductCellCVCell.xib in Resources */,
 				CA9054F32A7D1ED1005A832F /* LaunchScreen.storyboard in Resources */,
 				CA9054F02A7D1ED1005A832F /* Assets.xcassets in Resources */,
 				CA9054EE2A7D1ED0005A832F /* Main.storyboard in Resources */,
@@ -138,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA9054FE2A7E489F005A832F /* ProductCellCVCell.swift in Sources */,
 				CA9054EB2A7D1ED0005A832F /* ViewController.swift in Sources */,
 				CA9054E72A7D1ED0005A832F /* AppDelegate.swift in Sources */,
 				CA9054E92A7D1ED0005A832F /* SceneDelegate.swift in Sources */,
