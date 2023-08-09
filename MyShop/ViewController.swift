@@ -47,10 +47,10 @@ extension ViewController {
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        // Define the size of your cell here
-//        return CGSize(width: 200, height: 200) // example size
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // Define the size of your cell here
+        return CGSize(width: 160, height: 220) // example size
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10 // example spacing
@@ -59,6 +59,23 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10 // example spacing
     }
+    
+   
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            performSegue(withIdentifier: "toProductDetail", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toProductDetail", let destinationVC = segue.destination as? ProductDetailViewController {
+            if let indexPath = collectionView.indexPathsForSelectedItems?.first {
+                // Assuming you have a data source array called 'products'
+//                let selectedProduct = products[indexPath.row]
+//                destinationVC.product = selectedProduct
+            }
+        }
+    }
+
+    
 }
 
 
