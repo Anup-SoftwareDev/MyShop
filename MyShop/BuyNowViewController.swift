@@ -1,15 +1,14 @@
 //
-//  CartViewController.swift
+//  BuyNowViewController.swift
 //  MyShop
 //
-//  Created by Anup Kuriakose on 8/8/2023.
+//  Created by Anup Kuriakose on 9/8/2023.
 //
 
 import UIKit
 
-class CartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BuyNowViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -34,7 +33,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
       
       // Number of rows in section
       func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-          return 3 // Three cells
+          return 1 // Three cells
       }
       
       // Create the cell for each row
