@@ -6,17 +6,84 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    @IBOutlet weak var loginBtn: UIBarButtonItem!
-    @IBOutlet weak var collectionView: UICollectionView! // Connect this outlet to your UICollectionView in the storyboard
+    
+    @IBOutlet weak var cartBtn: UIBarButtonItem!
+    @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var greetingLbl: UILabel!
 
+    
     override func viewDidLoad() {
             super.viewDidLoad()
             setupCollectionView()
+            loginBtn.titleLabel?.font = UIFont(name: "MarkerFelt", size: 16)
+        }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if let user = Auth.auth().currentUser {
+            loginBtn.setTitle("Logout", for: .normal)
+            if let email = user.email {
+                if let range = email.range(of: "@") {
+                    var name = String(email[..<range.lowerBound])
+                    name = name.prefix(1).capitalized + name.dropFirst()
+                    greetingLbl.text = ("Hi \(name)")
+                }
+            }
+        } else {
+            loginBtn.setTitle("Log in", for: .normal)
+            greetingLbl.text = "Hi Guest"
         }
         
+       // loginBtn.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
+//        for fontName in UIFont.fontNames(forFamilyName: "Marker Felt") {
+//            print(fontName)
+//        }
+        
+    }
+    
+    @IBAction func cartBtnClicked(_ sender: Any) {
+       
+        if let user = Auth.auth().currentUser {
+                print("loggedIn")
+                performSegue(withIdentifier: "toCart", sender: self)
+            } else {
+                print("not Logged in")
+                let alert = UIAlertController(title: "Log in Required", message: "Need to Log in to view Cart Items", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+                    self?.performSegue(withIdentifier: "toLogin", sender: self)
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+        
+        
+    }
+    
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        
+        if let user = Auth.auth().currentUser {
+                // User is currently logged in, so log them out
+                do {
+                    try Auth.auth().signOut()
+                    loginBtn.setTitle("Log in", for: .normal)
+                    greetingLbl.text = "Hi Guest"
+                } catch let error {
+                    print("Error signing out: \(error.localizedDescription)")
+                    // Optionally, you can show an alert to the user if the logout fails
+                }
+            } else {
+                // User is not logged in, perform the segue to the login view controller
+                performSegue(withIdentifier: "toLogin", sender: self)
+            }
+        
+        
+    }
+    
         private func setupCollectionView() {
             // Register the xib for the collection view cell
             let nib = UINib(nibName: "ProductCellCVCell", bundle: nil)
@@ -74,6 +141,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             }
         }
     }
+
 
     
 }

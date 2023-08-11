@@ -3,7 +3,6 @@
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -45,9 +44,8 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfh-90-Erc">
-                                <rect key="frame" x="332" y="113" width="80" height="25"/>
+                                <rect key="frame" x="350" y="113" width="62" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="UHT-3q-HFS"/>
                                     <constraint firstAttribute="height" constant="25" id="fer-kv-VeC"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
@@ -57,7 +55,7 @@
                                     <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="ZDX-oK-gKA" kind="show" id="gux-pJ-TsL"/>
+                                    <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6mP-dS-7TL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -71,6 +69,7 @@
                             <constraint firstAttribute="bottomMargin" secondItem="ENA-43-6C1" secondAttribute="bottom" id="dj4-gh-DNV"/>
                             <constraint firstItem="ENA-43-6C1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="gca-GM-CvR"/>
                             <constraint firstItem="gfh-90-Erc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="sGg-zA-OhG"/>
+                            <constraint firstItem="gfh-90-Erc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="USN-Ts-oxP" secondAttribute="trailing" constant="8" symbolic="YES" id="smK-Kn-GLB"/>
                             <constraint firstItem="USN-Ts-oxP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="18" id="yQV-pI-dDc"/>
                         </constraints>
                     </view>
@@ -79,13 +78,18 @@
                         <barButtonItem key="rightBarButtonItem" title="Shop" image="bar_button_cart" id="det-2H-g03">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="2U5-9H-ymW" kind="show" identifier="homeToCartIdentifier" id="9lo-lU-LgW"/>
+                                <action selector="cartBtnClicked:" destination="BYZ-38-t0r" id="UYu-wh-sjx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cartBtn" destination="det-2H-g03" id="J8W-RC-wgu"/>
                         <outlet property="collectionView" destination="ENA-43-6C1" id="gBY-KB-aMd"/>
+                        <outlet property="greetingLbl" destination="USN-Ts-oxP" id="nZf-bx-TPc"/>
+                        <outlet property="loginBtn" destination="gfh-90-Erc" id="lI5-Gb-D53"/>
                         <segue destination="1FE-GT-WvB" kind="show" identifier="toProductDetail" id="g1F-ed-agd"/>
+                        <segue destination="ZDX-oK-gKA" kind="show" identifier="toLogin" id="jJI-ks-gFO"/>
+                        <segue destination="2U5-9H-ymW" kind="show" identifier="toCart" id="obh-ij-IB3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -129,7 +133,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="1Y6-FK-eqc"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
-                                                <color key="textColor" name="AccentColor"/>
+                                                <color key="textColor" systemColor="linkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A$1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNf-YP-xK2">
@@ -164,13 +168,13 @@
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Buy It Now" cornerStyle="capsule">
                                                             <backgroundConfiguration key="background">
-                                                                <color key="backgroundColor" name="AccentColor"/>
+                                                                <color key="backgroundColor" systemColor="linkColor"/>
                                                             </backgroundConfiguration>
                                                             <fontDescription key="titleFontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="22"/>
                                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <segue destination="DKs-7o-s3E" kind="show" id="71B-De-8Kd"/>
+                                                            <action selector="buyBtnClicked:" destination="1FE-GT-WvB" eventType="touchUpInside" id="sMa-8B-xOl"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifa-Dn-3XW">
@@ -258,12 +262,17 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="9T4-3g-JuB"/>
                         <barButtonItem key="rightBarButtonItem" image="bar_button_cart" id="pYu-Dw-eOD">
                             <connections>
-                                <segue destination="2U5-9H-ymW" kind="show" identifier="toCartIdentifier" id="YgO-Mf-uG3"/>
+                                <action selector="cartBtnClicked:" destination="1FE-GT-WvB" id="6Ws-HJ-vLL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addCartBtn" destination="Ifa-Dn-3XW" id="eOV-V7-PfY"/>
+                        <outlet property="cartBtn" destination="pYu-Dw-eOD" id="RIc-hA-VYc"/>
+                        <outlet property="greetingLbl" destination="S8v-3b-fQT" id="l5O-Pf-qMp"/>
+                        <segue destination="2U5-9H-ymW" kind="show" identifier="toCart" id="Pgf-t9-0I8"/>
+                        <segue destination="ZDX-oK-gKA" kind="show" identifier="toLogin" id="ZKj-Uq-txc"/>
+                        <segue destination="DKs-7o-s3E" kind="show" identifier="toBuy" id="Z9S-1e-KDx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmn-3w-3dd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -373,7 +382,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="BEK-lr-M9Z"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
-                                                <color key="textColor" name="AccentColor"/>
+                                                <color key="textColor" systemColor="linkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A$ 3200.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vM7-ke-Jei">
@@ -382,7 +391,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="YYA-xc-oqL"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
-                                                <color key="textColor" name="AccentColor"/>
+                                                <color key="textColor" systemColor="linkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -471,6 +480,7 @@
                     <navigationItem key="navigationItem" title="MyCart" id="ODV-HC-qxs"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="greetingLbl" destination="Ics-Po-vve" id="0ol-Bq-6Zh"/>
                         <outlet property="tableView" destination="Z7s-Dz-2VZ" id="rFi-bt-zsh"/>
                     </connections>
                 </viewController>
@@ -503,7 +513,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPP-74-HwN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="84" y="-50"/>
         </scene>
         <!--MyBuy-->
         <scene sceneID="5zf-60-WuW">
@@ -608,7 +618,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="rM9-ef-BFu"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
-                                                <color key="textColor" name="AccentColor"/>
+                                                <color key="textColor" systemColor="linkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A$ 3200.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYw-Ro-TEA">
@@ -617,7 +627,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="ShY-9S-Cla"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
-                                                <color key="textColor" name="AccentColor"/>
+                                                <color key="textColor" systemColor="linkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -706,6 +716,7 @@
                     <navigationItem key="navigationItem" title="MyBuy" id="YDm-uG-SFY"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="greetingLbl" destination="ojP-SJ-9Lq" id="V75-5g-UF7"/>
                         <outlet property="tableView" destination="eMC-xB-v1h" id="Vun-M7-Fcs"/>
                     </connections>
                 </viewController>
@@ -726,7 +737,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="a55-7k-al2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="odp-yd-upf">
@@ -734,8 +745,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Epn-js-Ofs"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2f9-ve-EjO">
                                 <rect key="frame" x="20" y="323" width="390" height="50"/>
@@ -746,9 +757,12 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Log in" cornerStyle="capsule">
                                     <fontDescription key="titleFontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="22"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="loginClicked:" destination="ZDX-oK-gKA" eventType="touchUpInside" id="uI9-66-MAs"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKx-35-N0p">
-                                <rect key="frame" x="204.66666666666666" y="403" width="20.666666666666657" height="29"/>
+                                <rect key="frame" x="204.66666666666666" y="403" width="21" height="29"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -792,6 +806,11 @@
                     <navigationItem key="navigationItem" title="Log In" id="0aw-oM-9ne">
                         <barButtonItem key="backBarButtonItem" title=" " id="zZi-44-Y74"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emailtxt" destination="jIm-xa-ZS6" id="gdO-NA-MjE"/>
+                        <outlet property="passwordtxt" destination="odp-yd-upf" id="r2u-JV-saD"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toHome" id="NxT-98-9TH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ft-xR-d9u" sceneMemberID="firstResponder"/>
             </objects>
@@ -805,20 +824,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter firstname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BZw-yk-ZIY">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BZw-yk-ZIY">
                                 <rect key="frame" x="20" y="153" width="390" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Pns-XN-fiP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uw4-dc-cd4">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uw4-dc-cd4">
                                 <rect key="frame" x="20" y="238" width="390" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="P3Q-We-0au"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8E2-T9-cOR">
@@ -826,8 +845,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="xcu-vP-QuZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LtU-cK-IzR">
                                 <rect key="frame" x="20" y="478" width="390" height="50"/>
@@ -839,6 +858,9 @@
                                     <fontDescription key="titleFontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="22"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="createAccountClicked:" destination="ge6-nw-Ie3" eventType="touchUpInside" id="bhq-FN-54U"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u77-fy-zXS">
                                 <rect key="frame" x="20" y="398" width="390" height="50"/>
@@ -846,8 +868,8 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="3yr-IE-LO8"/>
                                     <constraint firstAttribute="height" constant="50" id="iqa-wb-QDQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RSl-wa-WFg"/>
@@ -873,6 +895,13 @@
                     <navigationItem key="navigationItem" title="Create Account" id="fHk-XD-Bx6">
                         <barButtonItem key="backBarButtonItem" title=" " id="Wo8-M0-tGh"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="confirmpasstxt" destination="u77-fy-zXS" id="zfF-Te-Kgb"/>
+                        <outlet property="emailtxt" destination="uw4-dc-cd4" id="h2V-Rk-873"/>
+                        <outlet property="nametxt" destination="BZw-yk-ZIY" id="n1Q-KG-fMg"/>
+                        <outlet property="passwordtxt" destination="8E2-T9-cOR" id="WfZ-dH-gL4"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toHome" id="5fV-Pp-Umd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kcv-rF-hzD" sceneMemberID="firstResponder"/>
             </objects>
@@ -880,14 +909,16 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YgO-Mf-uG3"/>
+        <segue reference="ZKj-Uq-txc"/>
+        <segue reference="Pgf-t9-0I8"/>
+        <segue reference="Pzd-qJ-yA7"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bar_button_cart" width="27" height="24"/>
         <image name="iphone" width="1152.3333740234375" height="1728.3333740234375"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

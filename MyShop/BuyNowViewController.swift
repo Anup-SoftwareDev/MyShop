@@ -6,25 +6,49 @@
 //
 
 import UIKit
+import Firebase
 
 class BuyNowViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var greetingLbl: UILabel!
+    
     override func viewDidLoad() {
-          super.viewDidLoad()
-          
-          // Register the CartItemCell.xib
-          let nib = UINib(nibName: "CartItemCell", bundle: nil)
-          tableView.register(nib, forCellReuseIdentifier: "CartItemCell")
-          
-          // Set the delegate and dataSource for the tableView
-          tableView.delegate = self
-          tableView.dataSource = self
+        super.viewDidLoad()
+        
+        // Register the CartItemCell.xib
+        let nib = UINib(nibName: "CartItemCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "CartItemCell")
+        
+        // Set the delegate and dataSource for the tableView
+        tableView.delegate = self
+        tableView.dataSource = self
         
         // Remove the lines between cells
-            tableView.separatorStyle = .none
-      }
+        tableView.separatorStyle = .none
+        
+        setupGreetingLbl()
+    }
+    
+    private func setupGreetingLbl(){
+        
+        if let user = Auth.auth().currentUser {
+           
+            if let email = user.email {
+                if let range = email.range(of: "@") {
+                    var name = String(email[..<range.lowerBound])
+                    name = name.prefix(1).capitalized + name.dropFirst()
+                    greetingLbl.text = ("Hi \(name)")
+                }
+                
+            }
+        } else {
+            
+            greetingLbl.text = "Hi Guest"
+        }
+        
+    }
       
       // Number of sections
       func numberOfSections(in tableView: UITableView) -> Int {
