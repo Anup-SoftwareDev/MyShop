@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import StripePaymentSheet
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -16,40 +17,33 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var greetingLbl: UILabel!
+    
+    var paymentSheet: PaymentSheet?
+    let backendCheckoutUrl = URL(string: "https://myshopbackend.onrender.com/payment-sheet")! // Your backend endpoint
 
     
     override func viewDidLoad() {
             super.viewDidLoad()
             setupCollectionView()
             loginBtn.titleLabel?.font = UIFont(name: "MarkerFelt", size: 16)
+            configurePaymentSheet()
         }
     
     override func viewDidAppear(_ animated: Bool) {
+        let greetingManager = GreetingLabelManager()
+        greetingLbl.text = greetingManager.getGreeting()
         
-        if let user = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
             loginBtn.setTitle("Logout", for: .normal)
-            if let email = user.email {
-                if let range = email.range(of: "@") {
-                    var name = String(email[..<range.lowerBound])
-                    name = name.prefix(1).capitalized + name.dropFirst()
-                    greetingLbl.text = ("Hi \(name)")
-                }
-            }
         } else {
             loginBtn.setTitle("Log in", for: .normal)
-            greetingLbl.text = "Hi Guest"
         }
-        
-       // loginBtn.titleLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 16)
-//        for fontName in UIFont.fontNames(forFamilyName: "Marker Felt") {
-//            print(fontName)
-//        }
         
     }
     
     @IBAction func cartBtnClicked(_ sender: Any) {
        
-        if let user = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
                 print("loggedIn")
                 performSegue(withIdentifier: "toCart", sender: self)
             } else {
@@ -135,13 +129,18 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toProductDetail", let destinationVC = segue.destination as? ProductDetailViewController {
             if let indexPath = collectionView.indexPathsForSelectedItems?.first {
-                // Assuming you have a data source array called 'products'
-//                let selectedProduct = products[indexPath.row]
-//                destinationVC.product = selectedProduct
             }
         }
     }
+   
 
+    private func configurePaymentSheet() {
+        let paymentSheetConfigurator = PaymentSheetConfigurator(backendCheckoutUrl: backendCheckoutUrl)
+        paymentSheetConfigurator.configurePaymentSheet { [weak self] paymentSheet in
+            self?.paymentSheet = paymentSheet
+           
+        }
+    }
 
     
 }

@@ -7,12 +7,20 @@
 
 import UIKit
 import Firebase
+import StripePaymentSheet
 
 class BuyNowViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    
 
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var greetingLbl: UILabel!
+    
+    @IBOutlet weak var payBtn: UIButton!
+    
+    var paymentSheet: PaymentSheet?
+    let backendCheckoutUrl = URL(string: "https://myshopbackend.onrender.com/payment-sheet")! // Your backend endpoint
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,27 +37,38 @@ class BuyNowViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.separatorStyle = .none
         
         setupGreetingLbl()
+        payBtn.isEnabled = false
+        configurePaymentSheet()
+    }
+    
+    
+    @IBAction func payBtnClicked(_ sender: Any) {
+        
+        configurePaymentSheet()
+      // MARK: Start the checkout process
+        paymentSheet?.present(from: self) { [unowned self] paymentResult in
+        // MARK: Handle the payment result
+          print("Payment Result: \(paymentResult)")
+        switch paymentResult {
+        case .completed:
+          print("Your order is confirmed")
+            self.performSegue(withIdentifier: "toPaymentConfirmation", sender: self)
+        case .canceled:
+          print("Canceled!")
+        case .failed(let error):
+          print("Payment failed: \(error)")
+        }
+          
+
+      }
+        
     }
     
     private func setupGreetingLbl(){
-        
-        if let user = Auth.auth().currentUser {
-           
-            if let email = user.email {
-                if let range = email.range(of: "@") {
-                    var name = String(email[..<range.lowerBound])
-                    name = name.prefix(1).capitalized + name.dropFirst()
-                    greetingLbl.text = ("Hi \(name)")
-                }
-                
-            }
-        } else {
-            
-            greetingLbl.text = "Hi Guest"
-        }
-        
+        let greetingManager = GreetingLabelManager()
+        greetingLbl.text = greetingManager.getGreeting()
     }
-      
+
       // Number of sections
       func numberOfSections(in tableView: UITableView) -> Int {
           return 1
@@ -66,7 +85,17 @@ class BuyNowViewController: UIViewController, UITableViewDataSource, UITableView
           // Configure the cell as needed here
           return cell
       }
+
     
+    private func configurePaymentSheet() {
+        let paymentSheetConfigurator = PaymentSheetConfigurator(backendCheckoutUrl: backendCheckoutUrl)
+        paymentSheetConfigurator.configurePaymentSheet { [weak self] paymentSheet in
+            self?.paymentSheet = paymentSheet
+            DispatchQueue.main.async {
+                self?.payBtn.isEnabled = true
+            }
+        }
+    }
 
 
 }

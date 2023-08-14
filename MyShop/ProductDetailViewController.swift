@@ -29,12 +29,12 @@ class ProductDetailViewController: UIViewController {
     
     
     override func viewDidLoad() {
-            super.viewDidLoad()
-
-            // Add a target to the addCartBtn to call the addItemToCart method when clicked
-            addCartBtn.addTarget(self, action: #selector(addItemToCart), for: .touchUpInside)
+        super.viewDidLoad()
+        let greetingManager = GreetingLabelManager()
+        greetingLbl.text = greetingManager.getGreeting()
         
-            setupGreetingLbl()
+        addCartBtn.addTarget(self, action: #selector(addItemToCart), for: .touchUpInside)
+        
         
         }
     
@@ -68,25 +68,7 @@ class ProductDetailViewController: UIViewController {
         
         
     }
-    
-    private func setupGreetingLbl(){
-        
-        if let user = Auth.auth().currentUser {
-           
-            if let email = user.email {
-                if let range = email.range(of: "@") {
-                    var name = String(email[..<range.lowerBound])
-                    name = name.prefix(1).capitalized + name.dropFirst()
-                    greetingLbl.text = ("Hi \(name)")
-                }
-                
-            }
-        } else {
-            
-            greetingLbl.text = "Hi Guest"
-        }
-        
-    }
+
     
 
         @objc func addItemToCart() {
