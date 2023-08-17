@@ -10,16 +10,21 @@ import Firebase
 
 class ProductDetailViewController: UIViewController {
     
-    
+    var productIndex: Int?
+   
     @IBOutlet weak var imageView: UIImageView!
+    
     
     @IBOutlet weak var productLbl: UILabel!
     
-    @IBOutlet weak var priceLbl: UILabel!
     
+    @IBOutlet weak var priceLbl: UILabel!
+   
     @IBOutlet weak var productDescription: UITextView!
     
+    
     @IBOutlet weak var buyBtn: UIButton!
+    
     
     @IBOutlet weak var addCartBtn: UIButton!
     
@@ -28,10 +33,16 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var greetingLbl: UILabel!
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let greetingManager = GreetingLabelManager()
         greetingLbl.text = greetingManager.getGreeting()
+        let product = ProductCellCVCell()
+        imageView.image = UIImage(named: product.imageNames[productIndex!])
+        productLbl.text = product.productNames[productIndex!]
+        priceLbl.text = "A$ \(String(product.productPrices[productIndex!]))"
         
         addCartBtn.addTarget(self, action: #selector(addItemToCart), for: .touchUpInside)
         
@@ -40,7 +51,7 @@ class ProductDetailViewController: UIViewController {
     
     @IBAction func buyBtnClicked(_ sender: Any) {
         
-        if let user = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
                 performSegue(withIdentifier: "toBuy", sender: self)
             } else {
                 let alert = UIAlertController(title: "Log in Required", message: "Need to Log in to Buy", preferredStyle: .alert)
@@ -55,7 +66,7 @@ class ProductDetailViewController: UIViewController {
     
     @IBAction func cartBtnClicked(_ sender: Any) {
         
-        if let user = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
                 performSegue(withIdentifier: "toCart", sender: self)
             } else {
                 let alert = UIAlertController(title: "Log in Required", message: "Need to Log in to view Cart Items", preferredStyle: .alert)
@@ -73,7 +84,7 @@ class ProductDetailViewController: UIViewController {
 
         @objc func addItemToCart() {
             
-            if let user = Auth.auth().currentUser {
+            if Auth.auth().currentUser != nil {
                     
             // Create an alert
             let alert = UIAlertController(title: "Item Added to Cart:", message: "iPhone Pro Max", preferredStyle: .alert)
@@ -94,24 +105,8 @@ class ProductDetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        if let user = Auth.auth().currentUser {
-           
-            if let email = user.email {
-                //greetingLbl.text = ("Hi \(email)")
-                if let email = user.email {
-                    if let range = email.range(of: "@") {
-                        var name = String(email[..<range.lowerBound])
-                        name = name.prefix(1).capitalized + name.dropFirst()
-                        greetingLbl.text = ("Hi \(name)")
-                    }
-                    
-                }
-                
-            }
-        } else {
-            
-            greetingLbl.text = "Hi Guest"
-        }
+        let greetingManager = GreetingLabelManager()
+        greetingLbl.text = greetingManager.getGreeting()
         
     }
         

@@ -11,7 +11,6 @@ import StripePaymentSheet
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    
     @IBOutlet weak var cartBtn: UIBarButtonItem!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -26,6 +25,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             super.viewDidLoad()
             setupCollectionView()
             loginBtn.titleLabel?.font = UIFont(name: "MarkerFelt", size: 16)
+            loginBtn.isEnabled = false
             configurePaymentSheet()
         }
     
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBAction func loginButtonTapped(_ sender: Any) {
         
-        if let user = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
                 // User is currently logged in, so log them out
                 do {
                     try Auth.auth().signOut()
@@ -97,12 +97,13 @@ extension ViewController {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20 // You mentioned you want it repeated 4 times
+        return 8 // You mentioned you want it repeated 4 times
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCellCVCell", for: indexPath) as! ProductCellCVCell
         // Configure cell if needed
+        cell.configure(with: indexPath.row)
         return cell
     }
 }
@@ -112,33 +113,41 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         // Define the size of your cell here
         return CGSize(width: 160, height: 220) // example size
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10 // example spacing
-    }
+ 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10 // example spacing
     }
     
-   
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            performSegue(withIdentifier: "toProductDetail", sender: self)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toProductDetail", let destinationVC = segue.destination as? ProductDetailViewController {
-            if let indexPath = collectionView.indexPathsForSelectedItems?.first {
-            }
+        if segue.identifier == "toProductDetail", let destinationVC = segue.destination as? ProductDetailViewController, let index = sender as? Int {
+            destinationVC.productIndex = index
         }
     }
+
+    
+   
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            print("You have clicked \(indexPath.row)")
+            
+            performSegue(withIdentifier: "toProductDetail", sender: indexPath.row)
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toProductDetail", let destinationVC = segue.destination as? ProductDetailViewController {
+//            if let indexPath = collectionView.indexPathsForSelectedItems?.first {
+//            }
+//        }
+//    }
    
 
     private func configurePaymentSheet() {
         let paymentSheetConfigurator = PaymentSheetConfigurator(backendCheckoutUrl: backendCheckoutUrl)
         paymentSheetConfigurator.configurePaymentSheet { [weak self] paymentSheet in
             self?.paymentSheet = paymentSheet
-           
+            DispatchQueue.main.async {
+                self?.loginBtn.isEnabled = true
+            }
         }
     }
 
