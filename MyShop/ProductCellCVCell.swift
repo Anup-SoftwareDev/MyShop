@@ -42,8 +42,9 @@ class ProductCellCVCell: UICollectionViewCell {
             let adjustedIndex = index % imageNames.count
             productImage.image = UIImage(named: imageNames[adjustedIndex])
             productNameLbl.text = productNames[adjustedIndex]
-            productPriceLbl.text = "A$ \(String(productPrices[adjustedIndex]))"
+            //productPriceLbl.text = "A$ \(String(productPrices[adjustedIndex]))"
             
+            productPriceLbl.text = String(format: "A$ %.2f", productPrices[adjustedIndex])
         }
     }
 

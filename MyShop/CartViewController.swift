@@ -20,7 +20,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var paymentSheet: PaymentSheet?
     let backendCheckoutUrl = URL(string: "https://myshopbackend.onrender.com/payment-sheet")! // Your backend endpoint
-    
+    //let backendCheckoutUrl = URL(string: "http://localhost:3002/payment-sheet")! // Your backend endpoint
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -89,7 +89,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     private func configurePaymentSheet() {
         let paymentSheetConfigurator = PaymentSheetConfigurator(backendCheckoutUrl: backendCheckoutUrl)
-        paymentSheetConfigurator.configurePaymentSheet { [weak self] paymentSheet in
+        paymentSheetConfigurator.configurePaymentSheet(withAmount: 200) { [weak self] paymentSheet in
             self?.paymentSheet = paymentSheet
             DispatchQueue.main.async {
                 self?.payBtn.isEnabled = true

@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-import StripePaymentSheet
+//import StripePaymentSheet
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -17,16 +17,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBOutlet weak var greetingLbl: UILabel!
     
-    var paymentSheet: PaymentSheet?
-    let backendCheckoutUrl = URL(string: "https://myshopbackend.onrender.com/payment-sheet")! // Your backend endpoint
+//    var paymentSheet: PaymentSheet?
+//    let backendCheckoutUrl = URL(string: "https://myshopbackend.onrender.com/payment-sheet")! // Your backend endpoint
 
     
     override func viewDidLoad() {
             super.viewDidLoad()
             setupCollectionView()
             loginBtn.titleLabel?.font = UIFont(name: "MarkerFelt", size: 16)
-            loginBtn.isEnabled = false
-            configurePaymentSheet()
+            //loginBtn.isEnabled = false
+           // configurePaymentSheet()
         }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -132,24 +132,18 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             
             performSegue(withIdentifier: "toProductDetail", sender: indexPath.row)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "toProductDetail", let destinationVC = segue.destination as? ProductDetailViewController {
-//            if let indexPath = collectionView.indexPathsForSelectedItems?.first {
+
+   
+//
+//    private func configurePaymentSheet() {
+//        let paymentSheetConfigurator = PaymentSheetConfigurator(backendCheckoutUrl: backendCheckoutUrl)
+//        paymentSheetConfigurator.configurePaymentSheet(withAmount: 200) { [weak self] paymentSheet in
+//            self?.paymentSheet = paymentSheet
+//            DispatchQueue.main.async {
+//                self?.loginBtn.isEnabled = true
 //            }
 //        }
 //    }
-   
-
-    private func configurePaymentSheet() {
-        let paymentSheetConfigurator = PaymentSheetConfigurator(backendCheckoutUrl: backendCheckoutUrl)
-        paymentSheetConfigurator.configurePaymentSheet { [weak self] paymentSheet in
-            self?.paymentSheet = paymentSheet
-            DispatchQueue.main.async {
-                self?.loginBtn.isEnabled = true
-            }
-        }
-    }
 
     
 }

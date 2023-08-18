@@ -49,10 +49,19 @@ class ProductDetailViewController: UIViewController {
         
         }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toBuy",
+           let destinationVC = segue.destination as? BuyNowViewController {
+            if let index = productIndex {
+                destinationVC.index = index
+            }
+        }
+    }
     @IBAction func buyBtnClicked(_ sender: Any) {
         
         if Auth.auth().currentUser != nil {
                 performSegue(withIdentifier: "toBuy", sender: self)
+               
             } else {
                 let alert = UIAlertController(title: "Log in Required", message: "Need to Log in to Buy", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in

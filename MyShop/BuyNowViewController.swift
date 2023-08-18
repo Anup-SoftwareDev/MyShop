@@ -9,36 +9,72 @@ import UIKit
 import Firebase
 import StripePaymentSheet
 
-class BuyNowViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    
+//class BuyNowViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BuyNowViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    //@IBOutlet weak var tableView: UITableView!
+    
+    
+    @IBOutlet weak var productPrice: UILabel!
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var productImage: UIImageView!
     
     @IBOutlet weak var greetingLbl: UILabel!
     
     @IBOutlet weak var payBtn: UIButton!
     
+    
+    @IBOutlet weak var priceLbl: UILabel!
+    @IBOutlet weak var shippingLbl: UILabel!
+    
+    @IBOutlet weak var processingFeeLbl: UILabel!
+    
+    @IBOutlet weak var totalFeeLbl: UILabel!
+    
+    var totalPrice: Double = 0.0 // Add this line
     var paymentSheet: PaymentSheet?
     let backendCheckoutUrl = URL(string: "https://myshopbackend.onrender.com/payment-sheet")! // Your backend endpoint
+    //let backendCheckoutUrl = URL(string: "http://localhost:3002/payment-sheet")! // Your backend endpoint
+    let product = ProductCellCVCell()
+    
+    var index = 1
+//    var productImage = "watch"
+//    var productLbl = "Watch"
+//    var productPrice = 42000.00
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let productImage = self.product.imageNames[self.index]
+        let productName = self.product.productNames[self.index]
+        let productPrice = self.product.productPrices[self.index]
+        let shippingPrice = 100.00
+        let processingFee = 50.00
+        totalPrice = productPrice + shippingPrice + processingFee
+//        self.productImage = productImage
+//        self.productLbl = productName
+//        self.productPrice = productPrice
         
-        // Register the CartItemCell.xib
-        let nib = UINib(nibName: "CartItemCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "CartItemCell")
+        self.productImage.image = UIImage(named: productImage)
+        self.productName.text = productName
+        self.productPrice.text = String(format: "A$ %.2f", productPrice)
         
-        // Set the delegate and dataSource for the tableView
-        tableView.delegate = self
-        tableView.dataSource = self
+        // Setup Lables
         
-        // Remove the lines between cells
-        tableView.separatorStyle = .none
+        priceLbl.text = String(format: "A$ %.2f", productPrice)
+        shippingLbl.text = String(format: "A$ %.2f", shippingPrice)
+        processingFeeLbl.text = String(format: "A$ %.2f", processingFee)
+        totalFeeLbl.text = String(format: "A$ %.2f", totalPrice)
+    
         
         setupGreetingLbl()
-        payBtn.isEnabled = false
+        payBtn.titleLabel?.font = UIFont.init(name: "GillSans-Italic", size: 30)
+        payBtn.setTitle("Loading Payment System ...", for: .normal)
+        payBtn.tintColor = UIColor.darkGray
+        //payBtn.setTitle(String(format: "Confirm and Pay - A$ %.2f", totalPrice), for: .normal)
+        //payBtn.titleLabel?.font = UIFont.init(name: "GillSans-Italic", size: 30)
+        //payBtn.isEnabled = false
         configurePaymentSheet()
+        
     }
     
     
@@ -69,33 +105,19 @@ class BuyNowViewController: UIViewController, UITableViewDataSource, UITableView
         greetingLbl.text = greetingManager.getGreeting()
     }
 
-      // Number of sections
-      func numberOfSections(in tableView: UITableView) -> Int {
-          return 1
-      }
-      
-      // Number of rows in section
-      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-          return 1 // Three cells
-      }
-      
-      // Create the cell for each row
-      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          let cell = tableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath)
-          // Configure the cell as needed here
-          return cell
-      }
 
     
     private func configurePaymentSheet() {
-        let paymentSheetConfigurator = PaymentSheetConfigurator(backendCheckoutUrl: backendCheckoutUrl)
-        paymentSheetConfigurator.configurePaymentSheet { [weak self] paymentSheet in
-            self?.paymentSheet = paymentSheet
-            DispatchQueue.main.async {
-                self?.payBtn.isEnabled = true
-            }
-        }
-    }
-
-
-}
+           let paymentSheetConfigurator = PaymentSheetConfigurator(backendCheckoutUrl: backendCheckoutUrl)
+           let amountInCents = Int(totalPrice * 100) // Convert to cents
+           paymentSheetConfigurator.configurePaymentSheet(withAmount: amountInCents) { [weak self] paymentSheet in
+               self?.paymentSheet = paymentSheet
+               DispatchQueue.main.async {
+                 //self?.payBtn.isEnabled = true
+                 self?.payBtn.setTitle(String(format: "Confirm and Pay - A$ %.2f", Double(amountInCents/100)), for: .normal)
+                 self?.payBtn.tintColor = UIColor.tintColor
+                   
+               }
+           }
+       }
+   }
