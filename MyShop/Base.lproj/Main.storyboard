@@ -450,6 +450,11 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="cartFinalTotalLbl" destination="vM7-ke-Jei" id="tIe-po-7GH"/>
+                        <outlet property="cartItemCountLbl" destination="F15-BK-zMR" id="jVv-pa-jt8"/>
+                        <outlet property="cartItemsPriceTotalLbl" destination="dbe-nI-AJR" id="4MC-7l-aBk"/>
+                        <outlet property="cartProcessingFeeLbl" destination="bqf-GH-h6d" id="SkD-N0-7XB"/>
+                        <outlet property="cartShippingFeeLbl" destination="16n-hM-2UI" id="Bvv-lK-dFI"/>
                         <outlet property="greetingLbl" destination="Ics-Po-vve" id="0ol-Bq-6Zh"/>
                         <outlet property="payBtn" destination="I7x-pc-mGf" id="G4p-lJ-VP5"/>
                         <outlet property="tableView" destination="Z7s-Dz-2VZ" id="rFi-bt-zsh"/>
@@ -997,7 +1002,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ete-2h-Q62"/>
+        <segue reference="XZg-4s-ZCW"/>
         <segue reference="ZKj-Uq-txc"/>
         <segue reference="Pgf-t9-0I8"/>
         <segue reference="hPF-Ba-n5q"/>

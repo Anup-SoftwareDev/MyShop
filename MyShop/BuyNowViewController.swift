@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import StripePaymentSheet
 
-//class BuyNowViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
 class BuyNowViewController: UIViewController {
 
     //@IBOutlet weak var tableView: UITableView!
@@ -47,8 +47,8 @@ class BuyNowViewController: UIViewController {
         let productImage = self.product.imageNames[self.index]
         let productName = self.product.productNames[self.index]
         let productPrice = self.product.productPrices[self.index]
-        let shippingPrice = 100.00
-        let processingFee = 50.00
+        let shippingPrice = 50.00
+        let processingFee = 25.00
         totalPrice = productPrice + shippingPrice + processingFee
 //        self.productImage = productImage
 //        self.productLbl = productName
@@ -114,7 +114,7 @@ class BuyNowViewController: UIViewController {
                self?.paymentSheet = paymentSheet
                DispatchQueue.main.async {
                  //self?.payBtn.isEnabled = true
-                 self?.payBtn.setTitle(String(format: "Confirm and Pay - A$ %.2f", Double(amountInCents/100)), for: .normal)
+                   self?.payBtn.setTitle(String(format: "Confirm and Pay - A$ %.2f", Double(amountInCents)/100), for: .normal)
                  self?.payBtn.tintColor = UIColor.tintColor
                    
                }

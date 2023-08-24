@@ -17,28 +17,40 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBOutlet weak var greetingLbl: UILabel!
     
-//    var paymentSheet: PaymentSheet?
-//    let backendCheckoutUrl = URL(string: "https://myshopbackend.onrender.com/payment-sheet")! // Your backend endpoint
-
+    var cartItemIndexes = DataHolder.shared.cartIndexNumbers
     
     override func viewDidLoad() {
             super.viewDidLoad()
+        
             setupCollectionView()
             loginBtn.titleLabel?.font = UIFont(name: "MarkerFelt", size: 16)
-            //loginBtn.isEnabled = false
-           // configurePaymentSheet()
+            if cartItemIndexes.count > 0{
+                print(cartItemIndexes.count)
+                cartBtn.setBadge(with: cartItemIndexes.count)
+            }
         }
     
     override func viewDidAppear(_ animated: Bool) {
+        var cartItemIndexes = DataHolder.shared.cartIndexNumbers
         let greetingManager = GreetingLabelManager()
         greetingLbl.text = greetingManager.getGreeting()
         
         if Auth.auth().currentUser != nil {
             loginBtn.setTitle("Logout", for: .normal)
+           
+            
         } else {
             loginBtn.setTitle("Log in", for: .normal)
+            
+            
         }
         
+        if cartItemIndexes.count > 0{
+            print(cartItemIndexes.count)
+            cartBtn.setBadge(with: cartItemIndexes.count)
+        }else{
+            cartBtn.removeBadge()
+        }
     }
     
     @IBAction func cartBtnClicked(_ sender: Any) {
@@ -66,7 +78,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                     try Auth.auth().signOut()
                     loginBtn.setTitle("Log in", for: .normal)
                     greetingLbl.text = "Hi Guest"
-                } catch let error {
+                    DataHolder.shared.cartIndexNumbers = []
+                    cartItemIndexes = []
+                    cartBtn.removeBadge()
+                    print( DataHolder.shared.cartIndexNumbers )                } catch let error {
                     print("Error signing out: \(error.localizedDescription)")
                     // Optionally, you can show an alert to the user if the logout fails
                 }
@@ -133,19 +148,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             performSegue(withIdentifier: "toProductDetail", sender: indexPath.row)
     }
 
-   
-//
-//    private func configurePaymentSheet() {
-//        let paymentSheetConfigurator = PaymentSheetConfigurator(backendCheckoutUrl: backendCheckoutUrl)
-//        paymentSheetConfigurator.configurePaymentSheet(withAmount: 200) { [weak self] paymentSheet in
-//            self?.paymentSheet = paymentSheet
-//            DispatchQueue.main.async {
-//                self?.loginBtn.isEnabled = true
-//            }
-//        }
-//    }
-
-    
 }
 
 

@@ -18,6 +18,7 @@
 		CA461AA72A89B05E000178E8 /* GreetingLabelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA461AA62A89B05E000178E8 /* GreetingLabelManager.swift */; };
 		CA461AA92A89B6BA000178E8 /* PaymentSheetConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA461AA82A89B6BA000178E8 /* PaymentSheetConfigurator.swift */; };
 		CA461AAB2A8CEFFE000178E8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA461AAA2A8CEFFE000178E8 /* HomeViewController.swift */; };
+		CA47F95E2A930A9E0046CB69 /* CartBtnBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA47F95D2A930A9E0046CB69 /* CartBtnBadge.swift */; };
 		CA9054E72A7D1ED0005A832F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9054E62A7D1ED0005A832F /* AppDelegate.swift */; };
 		CA9054E92A7D1ED0005A832F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9054E82A7D1ED0005A832F /* SceneDelegate.swift */; };
 		CA9054EB2A7D1ED0005A832F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9054EA2A7D1ED0005A832F /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 		CA461AA62A89B05E000178E8 /* GreetingLabelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingLabelManager.swift; sourceTree = "<group>"; };
 		CA461AA82A89B6BA000178E8 /* PaymentSheetConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSheetConfigurator.swift; sourceTree = "<group>"; };
 		CA461AAA2A8CEFFE000178E8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CA47F95D2A930A9E0046CB69 /* CartBtnBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartBtnBadge.swift; sourceTree = "<group>"; };
 		CA9054E32A7D1ED0005A832F /* MyShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA9054E62A7D1ED0005A832F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA9054E82A7D1ED0005A832F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				CA461AA62A89B05E000178E8 /* GreetingLabelManager.swift */,
+				CA47F95D2A930A9E0046CB69 /* CartBtnBadge.swift */,
 				CA461AA82A89B6BA000178E8 /* PaymentSheetConfigurator.swift */,
 			);
 			path = CallFunctions;
@@ -217,6 +220,7 @@
 				CA9054E92A7D1ED0005A832F /* SceneDelegate.swift in Sources */,
 				CA461A932A84FFAC000178E8 /* CartItemCell.swift in Sources */,
 				CA9055052A83B692005A832F /* BuyNowViewController.swift in Sources */,
+				CA47F95E2A930A9E0046CB69 /* CartBtnBadge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

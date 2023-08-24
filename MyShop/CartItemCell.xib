@@ -27,9 +27,15 @@
                         <buttonConfiguration key="configuration" style="plain" image="delete">
                             <backgroundConfiguration key="background"/>
                         </buttonConfiguration>
+                        <connections>
+                            <action selector="deleteBtnClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7RA-ts-FPs"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone Pro Max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9f-YO-Drd">
-                        <rect key="frame" x="111.99999999999999" y="40.666666666666664" width="133.66666666666663" height="23"/>
+                        <rect key="frame" x="121.99999999999999" y="24.666666666666671" width="133.66666666666663" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="23" id="l4n-x8-1k0"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="21"/>
                         <color key="textColor" systemColor="linkColor"/>
                         <nil key="highlightedColor"/>
@@ -42,23 +48,23 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A$ 1000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u96-aj-1in">
-                        <rect key="frame" x="260.66666666666669" y="40.666666666666664" width="103.66666666666669" height="23"/>
+                        <rect key="frame" x="122" y="56.666666666666657" width="103.66666666666669" height="23"/>
                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="21"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="u96-aj-1in" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0lR-iX-1bf"/>
-                    <constraint firstItem="O9f-YO-Drd" firstAttribute="leading" secondItem="xCX-gK-mKr" secondAttribute="trailing" constant="10" id="AIp-aV-VdZ"/>
                     <constraint firstItem="xCX-gK-mKr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Bmi-cL-aJV"/>
+                    <constraint firstItem="O9f-YO-Drd" firstAttribute="leading" secondItem="xCX-gK-mKr" secondAttribute="trailing" constant="20" id="Pen-W6-MZL"/>
+                    <constraint firstItem="u96-aj-1in" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="16" id="ZXE-56-fFw"/>
                     <constraint firstItem="JqX-yN-1K7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="boJ-7T-CJU"/>
+                    <constraint firstItem="O9f-YO-Drd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-16" id="dpL-W9-QBH"/>
                     <constraint firstItem="xCX-gK-mKr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="g6c-XM-lh8"/>
+                    <constraint firstItem="u96-aj-1in" firstAttribute="leading" secondItem="xCX-gK-mKr" secondAttribute="trailing" constant="20" id="iNb-Ct-O5f"/>
                     <constraint firstItem="xCX-gK-mKr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="ln9-dP-bZx"/>
                     <constraint firstAttribute="trailing" secondItem="JqX-yN-1K7" secondAttribute="trailing" id="nEF-KE-G1P"/>
                     <constraint firstAttribute="bottom" secondItem="xCX-gK-mKr" secondAttribute="bottom" constant="2" id="rbF-jS-bmP"/>
-                    <constraint firstItem="u96-aj-1in" firstAttribute="leading" secondItem="O9f-YO-Drd" secondAttribute="trailing" constant="15" id="snL-bX-xUX"/>
-                    <constraint firstItem="O9f-YO-Drd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="xio-OX-abw"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -66,6 +72,7 @@
                 <outlet property="CartItemPrice" destination="u96-aj-1in" id="Kf6-st-Iuc"/>
                 <outlet property="cartItemImage" destination="xCX-gK-mKr" id="Bjc-UF-Ct6"/>
                 <outlet property="cartItemLbl" destination="O9f-YO-Drd" id="DMj-sh-Qly"/>
+                <outlet property="deleteBtn" destination="JqX-yN-1K7" id="qch-9X-MZ9"/>
             </connections>
             <point key="canvasLocation" x="252.67175572519082" y="7.042253521126761"/>
         </tableViewCell>

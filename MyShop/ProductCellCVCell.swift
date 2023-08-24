@@ -17,9 +17,10 @@ class ProductCellCVCell: UICollectionViewCell {
 
     let imageNames = ["monitor", "camera", "iphone", "laptop", "vase", "watch", "xbox", "shopCart"]
     let productNames = ["Full-HD Monitor", "Fuji-X-S10", "iPhone Pro Max", "HP Pro-Book", "Ceramic Vase", "Omega Seamaster", "Xbox-5", "Red Shop-Cart"]
-    // let productPrices = ["A$ 259.99", "A$ 79.50", "$ 1000.00", "A$ 799.99", "A$ 29.99", "$42 999.99", "A$ 499.99", "A$298.99"]
+   
     let productPrices = [ 259.99, 79.50, 1000.00, 799.99, 29.99, 42999.99, 499.99, 298.99]
-        
+    
+
     override func awakeFromNib() {
             super.awakeFromNib()
             // Initialize the corner radius for labels

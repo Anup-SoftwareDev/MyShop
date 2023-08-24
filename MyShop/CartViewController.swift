@@ -18,8 +18,33 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var greetingLbl: UILabel!
     
+    @IBOutlet weak var cartItemCountLbl: UILabel!
+    
+    @IBOutlet weak var cartItemsPriceTotalLbl: UILabel!
+    
+
+    @IBOutlet weak var cartShippingFeeLbl: UILabel!
+    
+    
+    @IBOutlet weak var cartProcessingFeeLbl: UILabel!
+    
+    
+ 
+    @IBOutlet weak var cartFinalTotalLbl: UILabel!
+    
+    
+    //var cartItemIndexes = DataHolder.shared.cartIndexNumbers
+    var cartItems: [[String: Any]] = []
+    var cartItemsPriceTotal = 0.00
+    var shippingfee = 0.00
+    var processingfee = 0.00
+    var cartItemPriceFeeTotal = 0.00
+    
+ 
+    
     var paymentSheet: PaymentSheet?
-    let backendCheckoutUrl = URL(string: "https://myshopbackend.onrender.com/payment-sheet")! // Your backend endpoint
+    let backendCheckoutUrl = URL(string: "https://myshopbackend.onrender.com/payment-sheet")!
+    // Your backend endpoint
     //let backendCheckoutUrl = URL(string: "http://localhost:3002/payment-sheet")! // Your backend endpoint
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +60,22 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Remove the lines between cells
         tableView.separatorStyle = .none
         setupGreetingLbl()
-        
-      
-        payBtn.isEnabled = false
+        setupCartItems()
+        //payBtn.isEnabled = false
+        payBtn.tintColor = UIColor.darkGray
+        payBtn.setTitle("Loading Payment System ...", for: .normal)
         configurePaymentSheet()
+        print(processingfee)
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Reload the table view
+        setupCartItems()
+        tableView.reloadData()
+ 
     }
     
     
@@ -53,6 +90,9 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         switch paymentResult {
         case .completed:
           print("Your order is confirmed")
+            DataHolder.shared.cartIndexNumbers = []
+            cartItems = []
+            //cartItemIndexes = []
             self.performSegue(withIdentifier: "toPaymentConfirmation", sender: self)
         case .canceled:
           print("Canceled!")
@@ -61,6 +101,48 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
       }
         
+    }
+    
+    private func setupCartItems(){
+        let cartItemIndexes = DataHolder.shared.cartIndexNumbers
+        print(cartItemIndexes)
+        if cartItemIndexes.count == 0{
+            print(processingfee)
+            cartItems = []
+            cartItemsPriceTotal = 0
+            self.shippingfee = 0.00
+            self.processingfee = 0.00
+            payBtn.setTitle("CartEmpty - No Payments", for: .normal)
+            
+        }else{
+            if cartItemIndexes.count == cartItems.count{
+                return
+            }else{
+                self.shippingfee = 50.00
+                self.processingfee = 25.00
+                for index in cartItemIndexes {
+                    
+                    let product = ProductCellCVCell()
+                    print("Product Index: \(product.imageNames[index])")
+                    let item = [
+                        "cartItemImage": product.imageNames[index],
+                        "cartItemLbl": product.productNames[index],
+                        "cartItemPrice": Double(product.productPrices[index])
+                    ] as [String : Any]
+                    cartItems.append(item)
+                    cartItemsPriceTotal = cartItemsPriceTotal + product.productPrices[index]        }
+            }
+            
+        }
+        
+       print("Cart Items: \(cartItems)")
+        self.cartItemCountLbl.text = "Total (\(cartItemIndexes.count) item/s)"
+        //self.cartItemsPriceTotalLbl.text = "A$ \(cartItemsPriceTotal)"
+        self.cartItemsPriceTotalLbl.text = String(format: "A$ %.2f", cartItemsPriceTotal)
+        self.cartShippingFeeLbl.text = String(format: "A$ %.2f", shippingfee)
+        self.cartProcessingFeeLbl.text = String(format: "A$ %.2f", processingfee)
+        self.cartItemPriceFeeTotal = cartItemsPriceTotal + shippingfee + processingfee
+        self.cartFinalTotalLbl.text = String(format: "A$ %.2f", cartItemPriceFeeTotal)
     }
     
     private func setupGreetingLbl(){
@@ -75,24 +157,62 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
       
       // Number of rows in section
       func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-          return 3 // Three cells
+          print("Count: \(cartItems.count)")
+          //return cartItems.count
+          return max(cartItems.count, 1)
+          
       }
-      
-      // Create the cell for each row
-      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          let cell = tableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath)
-          // Configure the cell as needed here
-          return cell
-      }
+
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // If the cart is empty
+            if cartItems.count == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell") ?? UITableViewCell(style: .default, reuseIdentifier: "EmptyCell")
+                cell.textLabel?.text = "Cart is Empty"
+                return cell
+            }
+
+            // If the cart has items
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath) as? CartItemCell {
+                let cartItem = cartItems[indexPath.row]
+                print("IndexPath.row: \(indexPath.row)")
+                if let image = cartItem["cartItemImage"] as? String, let label = cartItem["cartItemLbl"] as? String, let price = cartItem["cartItemPrice"] as? Double, let index = indexPath.row as? Int
+                {
+                    cell.configureCell(with: image, label: label, price: price, index: index)
+                    
+                }
+                cell.deleteButtonTapped = { [weak self] in
+                    print("delete button closure executed")
+                        self?.cartItems = []
+                    self?.cartItemsPriceTotal = 0.00
+                    self?.cartItemPriceFeeTotal = 0.00
+                        self?.setupCartItems()
+                    self?.shippingfee = 0.00
+                    self?.processingfee = 0.00
+                        tableView.reloadData()
+                    self?.configurePaymentSheet()
+                        }
+                return cell
+            }
+
+            return UITableViewCell() // Fallback
+        
+    }
+
 
 
     private func configurePaymentSheet() {
         let paymentSheetConfigurator = PaymentSheetConfigurator(backendCheckoutUrl: backendCheckoutUrl)
-        paymentSheetConfigurator.configurePaymentSheet(withAmount: 200) { [weak self] paymentSheet in
+        let amountInCents = Int(cartItemPriceFeeTotal * 100)
+        print("amount in cents: \(amountInCents)")
+        paymentSheetConfigurator.configurePaymentSheet(withAmount: amountInCents) { [weak self] paymentSheet in
             self?.paymentSheet = paymentSheet
             DispatchQueue.main.async {
-                self?.payBtn.isEnabled = true
+                //self?.payBtn.isEnabled = true;
+                self?.payBtn.setTitle(String(format: "Confirm and Pay - A$ %.2f", Double(amountInCents)/100), for: .normal)
+                self?.payBtn.tintColor = UIColor.tintColor
+                
             }
         }
     }
