@@ -7,16 +7,27 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 class GreetingLabelManager {
-    func getGreeting() -> String {
-        if let user = Auth.auth().currentUser, let email = user.email, let range = email.range(of: "@") {
-            var name = String(email[..<range.lowerBound])
-            name = name.prefix(1).capitalized + name.dropFirst()
-            return "Hi \(name)"
+    
+    var database = Firestore.firestore()
+
+    
+    func getGreeting(completion: @escaping (String) -> Void) {
+        if let user = Auth.auth().currentUser, let email = user.email {
+            let docRef = database.document("users/\(email)")
+            docRef.getDocument { snapshot, error in
+                if let data = snapshot?.data(), error == nil, let name = data["name"] as? String {
+                    completion("Hi \(name.capitalized)")
+                } else {
+                    completion("Hi Guest")
+                }
+            }
         } else {
-            return "Hi Guest"
+            completion("Hi Guest")
         }
     }
+        
 }
 

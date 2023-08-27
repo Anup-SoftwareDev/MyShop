@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 extension UIBarButtonItem {
     
@@ -48,9 +49,54 @@ extension UIBarButtonItem {
   
 }
 
+//class DataHolder {
+//    static let shared = DataHolder()
+//    var cartIndexNumbers: [Int] = []
+//    let database = Firestore.firestore()
+//
+//    if let user = Auth.auth().currentUser, let email = user.email {
+//        let docRef = database.document("users/\(email)")
+//        docRef.getDocument { snapshot, error in
+//            guard let data = snapshot?.data(), error == nil else{
+//                           return
+//                       }
+//
+//            guard let cart = data["cart"] as? Array<Int> else {
+//                           return
+//                       }
+//            print("Cart: \(cart)")
+//            cartIndexNumbers = cart
+//        }
+//    }
+//
+//    private init() {} // This prevents others from using the default '()' initializer
+//}
+
 class DataHolder {
     static let shared = DataHolder()
     var cartIndexNumbers: [Int] = []
+    //let database = Firestore.firestore()
     
-    private init() {} // This prevents others from using the default '()' initializer
+    private init() {
+//        if let user = Auth.auth().currentUser, let email = user.email {
+//            let docRef = database.document("users/\(email)")
+//            docRef.getDocument { snapshot, error in
+//                guard let data = snapshot?.data(), error == nil else{
+//                    return
+//                }
+//
+//                guard let cart = data["cart"] as? [Int] else {
+//                    return
+//                }
+//                print("Cart: \(cart)")
+//                self.cartIndexNumbers = cart
+//            }
+//        }
+    }
 }
+
+
+
+
+
+

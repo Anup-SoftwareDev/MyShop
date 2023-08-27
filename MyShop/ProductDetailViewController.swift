@@ -7,12 +7,15 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
+import FirebaseAuth
 
 class ProductDetailViewController: UIViewController {
     
     var productIndex: Int?
     var product = ProductCellCVCell()
-       
+    var cartIndexNumbers: [Int] = DataHolder.shared.cartIndexNumbers
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var productLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
@@ -31,15 +34,10 @@ class ProductDetailViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let cartItemIndexes = DataHolder.shared.cartIndexNumbers
+        //let cartItemIndexes = DataHolder.shared.cartIndexNumbers
         setUpCartBadge()
         setUpGreetingLbl()
-        if cartItemIndexes.count > 0{
-            print(cartItemIndexes.count)
-            cartBtn.setBadge(with: cartItemIndexes.count)
-        }else{
-            cartBtn.removeBadge()
-        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -68,11 +66,13 @@ class ProductDetailViewController: UIViewController {
 
     @objc func addItemToCart() {
         
-        DataHolder.shared.cartIndexNumbers.append(productIndex!)
+        
         
         if Auth.auth().currentUser != nil {
+            DataHolder.shared.cartIndexNumbers.append(productIndex!)
             cartBtn.setBadge(with: DataHolder.shared.cartIndexNumbers.count)
             presentAlert(title: "Item Added to Cart:", message: "\(product.productNames[productIndex!]) - \(String(format: "A$ %.2f", product.productPrices[productIndex!]))")
+            addIndexToDatabase()
         } else {
             presentAlert(title: "Log in Required", message: "Need to Log in to add items to Cart", completion: { [weak self] _ in
                 self?.performSegue(withIdentifier: "toLogin", sender: self)
@@ -84,19 +84,38 @@ class ProductDetailViewController: UIViewController {
     /////////////////////////////////////////////////////////////////////////////////
     // Call Functions to simplify code above//////
     ///////////////////////////////////////////////////////////////////////////////////
+
+    
+    private func addIndexToDatabase(){
+        
+        let database = Firestore.firestore()
+        if let user = Auth.auth().currentUser, let email = user.email {
+            let docRef = database.document("users/\(email)")
+            cartIndexNumbers = DataHolder.shared.cartIndexNumbers
+            docRef.updateData(["cart": cartIndexNumbers])
+            }
+        
+        }
     
     private func setUpCartBadge(){
-        let cartItemIndexes = DataHolder.shared.cartIndexNumbers
-        print(cartItemIndexes)
-        if cartItemIndexes.count > 0{
-            cartBtn.setBadge(with: cartItemIndexes.count)
+        cartIndexNumbers = DataHolder.shared.cartIndexNumbers
+        if cartIndexNumbers.count > 0{
+            print(cartIndexNumbers.count)
+            cartBtn.setBadge(with: cartIndexNumbers.count)
+        }else{
+            cartBtn.removeBadge()
         }
         
     }
     
     private func setUpGreetingLbl() {
         let greetingManager = GreetingLabelManager()
-        greetingLbl.text = greetingManager.getGreeting()
+        //greetingLbl.text = greetingManager.getGreeting()
+        DispatchQueue.main.async {
+            greetingManager.getGreeting{[self]greeting in
+                self.greetingLbl.text = greeting
+            }
+        }
         
     }
     
@@ -105,6 +124,8 @@ class ProductDetailViewController: UIViewController {
         productLbl.text = product.productNames[productIndex!]
         priceLbl.text = "\(String(format: "A$ %.2f", product.productPrices[productIndex!]))"
         addCartBtn.addTarget(self, action: #selector(addItemToCart), for: .touchUpInside)
+        productDescription.text = product.productDescriptions[productIndex!]
+        
     }
     
     // Helper function to present alerts

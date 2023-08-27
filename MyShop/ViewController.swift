@@ -7,50 +7,35 @@
 
 import UIKit
 import Firebase
-//import StripePaymentSheet
+import FirebaseAuth
+import FirebaseFirestore
+
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var cartBtn: UIBarButtonItem!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var greetingLbl: UILabel!
     
-    var cartItemIndexes = DataHolder.shared.cartIndexNumbers
+    //var cartItemIndexes = DataHolder.shared.cartIndexNumbers
+    var cartItemIndexes: [Int] = []
     
     override func viewDidLoad() {
             super.viewDidLoad()
         
-            setupCollectionView()
-            loginBtn.titleLabel?.font = UIFont(name: "MarkerFelt", size: 16)
-            if cartItemIndexes.count > 0{
-                print(cartItemIndexes.count)
-                cartBtn.setBadge(with: cartItemIndexes.count)
-            }
+        setupCollectionView()
+            setupGreetingLbl()
+            setupLoginBtnTitle()
+            setupCartBadge()
         }
     
     override func viewDidAppear(_ animated: Bool) {
-        var cartItemIndexes = DataHolder.shared.cartIndexNumbers
-        let greetingManager = GreetingLabelManager()
-        greetingLbl.text = greetingManager.getGreeting()
-        
-        if Auth.auth().currentUser != nil {
-            loginBtn.setTitle("Logout", for: .normal)
-           
-            
-        } else {
-            loginBtn.setTitle("Log in", for: .normal)
-            
-            
-        }
-        
-        if cartItemIndexes.count > 0{
-            print(cartItemIndexes.count)
-            cartBtn.setBadge(with: cartItemIndexes.count)
-        }else{
-            cartBtn.removeBadge()
-        }
+        cartItemIndexes = []
+        setupGreetingLbl()
+        setupLoginBtnTitle()
+        setupCartBadge()
+
     }
     
     @IBAction func cartBtnClicked(_ sender: Any) {
@@ -102,7 +87,81 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             collectionView.dataSource = self
             collectionView.delegate = self
         }
+    
+    private func setupCartBadge() {
+        obtainCartIndexes { [weak self] in
+            guard let strongSelf = self else { return }
+            
+            if strongSelf.cartItemIndexes.count > 0 {
+                print(strongSelf.cartItemIndexes.count)
+                strongSelf.cartBtn.setBadge(with: strongSelf.cartItemIndexes.count)
+            } else {
+                strongSelf.cartBtn.removeBadge()
+            }
+        }
+    }
 
+    
+    private func setupGreetingLbl(){
+        
+        let greetingManager = GreetingLabelManager()
+        DispatchQueue.main.async {
+            greetingManager.getGreeting{[self]greeting in
+                self.greetingLbl.text = greeting
+            }
+        }
+    }
+    
+    private func setupLoginBtnTitle(){
+        if Auth.auth().currentUser != nil {
+            loginBtn.setTitle("Logout", for: .normal)
+           
+            
+        } else {
+            loginBtn.setTitle("Log in", for: .normal)
+        }
+    }
+    
+    private func obtainCartIndexes(completion: @escaping () -> Void){
+        let database = Firestore.firestore()
+        if let user = Auth.auth().currentUser, let email = user.email {
+            let docRef = database.document("users/\(email)")
+            docRef.getDocument { snapshot, error in
+                guard let data = snapshot?.data(), error == nil else{
+                    return
+                }
+               
+                guard let cartNumbers = data["cart"] as? Array<Int> else {
+                    return
+                }
+                print("Cart: \(cartNumbers)")
+                self.cartItemIndexes = cartNumbers
+                DataHolder.shared.cartIndexNumbers = cartNumbers
+
+                completion()
+            }
+        }
+    }
+//    private func obtainCartIndexes(){
+//        let database = Firestore.firestore()
+//        if let user = Auth.auth().currentUser, let email = user.email {
+//            let docRef = database.document("users/\(email)")
+//            docRef.getDocument { snapshot, error in
+//                guard let data = snapshot?.data(), error == nil else{
+//                               return
+//                           }
+//
+//                guard let cartNumbers = data["cart"] as? Array<Int> else {
+//                               return
+//                           }
+//                print("Cart: \(cartNumbers)")
+//                self.cartItemIndexes = cartNumbers
+//                DataHolder.shared.cartIndexNumbers = cartNumbers
+//
+//            }
+//        }
+//
+//    }
 }
 
 // MARK: - UICollectionViewDataSource

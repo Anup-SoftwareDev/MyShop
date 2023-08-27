@@ -7,9 +7,13 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
+
+
 
 class CreateAccountViewController: UIViewController {
     
+    var database = Firestore.firestore()
     
     @IBOutlet weak var nametxt: UITextField!
     
@@ -22,6 +26,7 @@ class CreateAccountViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
        
@@ -53,6 +58,7 @@ class CreateAccountViewController: UIViewController {
                 return
             }
             print("Successfully registered new user")
+            self.saveUser(username: email, name: name)
             self.performSegue(withIdentifier: "toHome", sender: self)
         }
     }
@@ -61,5 +67,12 @@ class CreateAccountViewController: UIViewController {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+        }
+    
+    func saveUser(username: String, name: String){
+        
+        let docRef = database.document("users/\(username)")
+        docRef.setData(["name": name , "username": username, "cart": []])
+            
         }
     }

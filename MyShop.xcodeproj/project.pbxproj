@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63398F4E9FF27B8870FF2C32 /* Pods_MyShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14A897E2A878E2BC871DB51 /* Pods_MyShop.framework */; };
 		CA461A932A84FFAC000178E8 /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA461A912A84FFAC000178E8 /* CartItemCell.swift */; };
 		CA461A942A84FFAC000178E8 /* CartItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA461A922A84FFAC000178E8 /* CartItemCell.xib */; };
 		CA461A962A859C9C000178E8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA461A952A859C9C000178E8 /* LoginViewController.swift */; };
@@ -30,9 +31,16 @@
 		CA9055012A80E5E4005A832F /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9055002A80E5E4005A832F /* ProductDetailViewController.swift */; };
 		CA9055032A81CE14005A832F /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9055022A81CE14005A832F /* CartViewController.swift */; };
 		CA9055052A83B692005A832F /* BuyNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9055042A83B692005A832F /* BuyNowViewController.swift */; };
+		CAB8E95F2A97880100E0DCF3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CAB8E95E2A97880100E0DCF3 /* FirebaseFirestore */; };
+		CAB8E9632A98D13800E0DCF3 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB8E9612A98D13800E0DCF3 /* ForgotPasswordVC.swift */; };
+		CAB8E9642A98D13800E0DCF3 /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB8E9622A98D13800E0DCF3 /* ForgotPasswordVC.xib */; };
+		CAB8E9672A98DBB400E0DCF3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB8E9662A98DBB400E0DCF3 /* Extensions.swift */; };
+		CAB8E9692A9AC0C700E0DCF3 /* CartProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB8E9682A9AC0C700E0DCF3 /* CartProductDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8EB3F862E40751F68D4BAED5 /* Pods-MyShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.debug.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.debug.xcconfig"; sourceTree = "<group>"; };
+		A14A897E2A878E2BC871DB51 /* Pods_MyShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA461A912A84FFAC000178E8 /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
 		CA461A922A84FFAC000178E8 /* CartItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemCell.xib; sourceTree = "<group>"; };
 		CA461A952A859C9C000178E8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +64,12 @@
 		CA9055002A80E5E4005A832F /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		CA9055022A81CE14005A832F /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		CA9055042A83B692005A832F /* BuyNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyNowViewController.swift; sourceTree = "<group>"; };
+		CAB8E95A2A97870D00E0DCF3 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAB8E9612A98D13800E0DCF3 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		CAB8E9622A98D13800E0DCF3 /* ForgotPasswordVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordVC.xib; sourceTree = "<group>"; };
+		CAB8E9662A98DBB400E0DCF3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CAB8E9682A9AC0C700E0DCF3 /* CartProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProductDetailViewController.swift; sourceTree = "<group>"; };
+		FEF42B10344911505210913D /* Pods-MyShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.release.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,12 +79,23 @@
 			files = (
 				CA461AA02A88A827000178E8 /* StripePaymentSheet in Frameworks */,
 				CA461A9B2A85CA5A000178E8 /* FirebaseAuth in Frameworks */,
+				63398F4E9FF27B8870FF2C32 /* Pods_MyShop.framework in Frameworks */,
+				CAB8E95F2A97880100E0DCF3 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB9B988FDDC72BFFC7756395 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8EB3F862E40751F68D4BAED5 /* Pods-MyShop.debug.xcconfig */,
+				FEF42B10344911505210913D /* Pods-MyShop.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CA461AA52A89AFF5000178E8 /* CallFunctions */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +111,8 @@
 			children = (
 				CA9054E52A7D1ED0005A832F /* MyShop */,
 				CA9054E42A7D1ED0005A832F /* Products */,
+				AB9B988FDDC72BFFC7756395 /* Pods */,
+				E43165A02ECD35B921BF8883 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +127,8 @@
 		CA9054E52A7D1ED0005A832F /* MyShop */ = {
 			isa = PBXGroup;
 			children = (
+				CAB8E9652A98DB8100E0DCF3 /* Utils */,
+				CAB8E9602A98D0F800E0DCF3 /* Xibs */,
 				CA461AA52A89AFF5000178E8 /* CallFunctions */,
 				CA9054E62A7D1ED0005A832F /* AppDelegate.swift */,
 				CA9054E82A7D1ED0005A832F /* SceneDelegate.swift */,
@@ -120,8 +149,35 @@
 				CA461A912A84FFAC000178E8 /* CartItemCell.swift */,
 				CA461A922A84FFAC000178E8 /* CartItemCell.xib */,
 				CA461AA32A88CAE6000178E8 /* PaymentConfirmationViewController.swift */,
+				CAB8E9682A9AC0C700E0DCF3 /* CartProductDetailViewController.swift */,
 			);
 			path = MyShop;
+			sourceTree = "<group>";
+		};
+		CAB8E9602A98D0F800E0DCF3 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				CAB8E9612A98D13800E0DCF3 /* ForgotPasswordVC.swift */,
+				CAB8E9622A98D13800E0DCF3 /* ForgotPasswordVC.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		CAB8E9652A98DB8100E0DCF3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CAB8E9662A98DBB400E0DCF3 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E43165A02ECD35B921BF8883 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CAB8E95A2A97870D00E0DCF3 /* FirebaseFirestore.framework */,
+				A14A897E2A878E2BC871DB51 /* Pods_MyShop.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +187,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA9054F72A7D1ED1005A832F /* Build configuration list for PBXNativeTarget "MyShop" */;
 			buildPhases = (
+				A0ED10D530DBA1C46DCB5DB5 /* [CP] Check Pods Manifest.lock */,
 				CA9054DF2A7D1ED0005A832F /* Sources */,
 				CA9054E02A7D1ED0005A832F /* Frameworks */,
 				CA9054E12A7D1ED0005A832F /* Resources */,
@@ -143,6 +200,7 @@
 			packageProductDependencies = (
 				CA461A9A2A85CA5A000178E8 /* FirebaseAuth */,
 				CA461A9F2A88A827000178E8 /* StripePaymentSheet */,
+				CAB8E95E2A97880100E0DCF3 /* FirebaseFirestore */,
 			);
 			productName = MyShop;
 			productReference = CA9054E32A7D1ED0005A832F /* MyShop.app */;
@@ -192,6 +250,7 @@
 			files = (
 				CA461A9D2A85D14B000178E8 /* GoogleService-Info.plist in Resources */,
 				CA9054FF2A7E489F005A832F /* ProductCellCVCell.xib in Resources */,
+				CAB8E9642A98D13800E0DCF3 /* ForgotPasswordVC.xib in Resources */,
 				CA9054F32A7D1ED1005A832F /* LaunchScreen.storyboard in Resources */,
 				CA9054F02A7D1ED1005A832F /* Assets.xcassets in Resources */,
 				CA461A942A84FFAC000178E8 /* CartItemCell.xib in Resources */,
@@ -201,12 +260,38 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A0ED10D530DBA1C46DCB5DB5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyShop-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CA9054DF2A7D1ED0005A832F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CA461A982A85A229000178E8 /* CreateAccountViewController.swift in Sources */,
+				CAB8E9692A9AC0C700E0DCF3 /* CartProductDetailViewController.swift in Sources */,
 				CA461AA72A89B05E000178E8 /* GreetingLabelManager.swift in Sources */,
 				CA461A962A859C9C000178E8 /* LoginViewController.swift in Sources */,
 				CA9054FE2A7E489F005A832F /* ProductCellCVCell.swift in Sources */,
@@ -220,6 +305,8 @@
 				CA9054E92A7D1ED0005A832F /* SceneDelegate.swift in Sources */,
 				CA461A932A84FFAC000178E8 /* CartItemCell.swift in Sources */,
 				CA9055052A83B692005A832F /* BuyNowViewController.swift in Sources */,
+				CAB8E9672A98DBB400E0DCF3 /* Extensions.swift in Sources */,
+				CAB8E9632A98D13800E0DCF3 /* ForgotPasswordVC.swift in Sources */,
 				CA47F95E2A930A9E0046CB69 /* CartBtnBadge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +449,7 @@
 		};
 		CA9054F82A7D1ED1005A832F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EB3F862E40751F68D4BAED5 /* Pods-MyShop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -374,8 +462,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -391,6 +479,7 @@
 		};
 		CA9054F92A7D1ED1005A832F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEF42B10344911505210913D /* Pods-MyShop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -403,8 +492,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -470,6 +559,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CA461A9E2A88A827000178E8 /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
 			productName = StripePaymentSheet;
+		};
+		CAB8E95E2A97880100E0DCF3 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA461A992A85CA5A000178E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

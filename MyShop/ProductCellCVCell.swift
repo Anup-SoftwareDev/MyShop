@@ -20,6 +20,21 @@ class ProductCellCVCell: UICollectionViewCell {
    
     let productPrices = [ 259.99, 79.50, 1000.00, 799.99, 29.99, 42999.99, 499.99, 298.99]
     
+    let productDescriptions: [String] = [
+    "Experience unparalleled clarity with our cutting-edge HD Monitor, designed for both professional and entertainment needs. Elevate your viewing experience with superior display quality",
+    "Capture moments with unmatched precision using the Fuji-X-S10, a fusion of advanced imaging technology and ergonomic design. Improve your photography game with its outstanding color reproduction, intuitive controls, and compact form factor.",
+    "Latest phone with all the sought after features. The camera resolution is second to none. Also provides Facetime and very managable navigation.",
+    "Unleash unparalleled productivity with the HP ProBook Laptop, a blend of robust performance and sleek design. Whether for business or leisure, its advanced features and durable build ensure you stay ahead in the digital age.",
+    "Advance your interior aesthetics with this pristine white vase, a seamless blend of classic elegance and modern design. Whether holding flowers or standing alone, it serves as a captivating centerpiece for any space.",
+    "Embody timeless elegance with the Omega Seamaster watch, a perfect union of precision engineering and sophisticated design. A testament to unparalleled craftsmanship, this timepiece not only tells time but narrates a legacy.",
+    "Dive into the future of gaming with the Xbox 5, where power meets innovation to deliver breathtaking experiences. Seamlessly blending top-tier performance with cutting-edge design, this console is set to redefine your digital adventures.",
+    "Revolutionize your shopping experience with our vibrant red cart, a perfect fusion of style and functionality. Designed for optimal convenience, its striking color not only grabs attention but ensures a smooth journey through aisles."
+    ]
+    
+        
+        
+    
+    
 
     override func awakeFromNib() {
             super.awakeFromNib()

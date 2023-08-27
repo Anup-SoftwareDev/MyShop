@@ -8,32 +8,22 @@
 import UIKit
 import Firebase
 import StripePaymentSheet
+import FirebaseFirestore
+import FirebaseAuth
 
-class CartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CartItemCellDelegate{
 
     
     @IBOutlet weak var payBtn: UIButton!
-    
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var greetingLbl: UILabel!
-    
     @IBOutlet weak var cartItemCountLbl: UILabel!
-    
     @IBOutlet weak var cartItemsPriceTotalLbl: UILabel!
-    
-
     @IBOutlet weak var cartShippingFeeLbl: UILabel!
-    
-    
     @IBOutlet weak var cartProcessingFeeLbl: UILabel!
-    
-    
- 
     @IBOutlet weak var cartFinalTotalLbl: UILabel!
     
-    
-    //var cartItemIndexes = DataHolder.shared.cartIndexNumbers
+    var cartItemIndexes: [Int] = []
     var cartItems: [[String: Any]] = []
     var cartItemsPriceTotal = 0.00
     var shippingfee = 0.00
@@ -44,8 +34,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var paymentSheet: PaymentSheet?
     let backendCheckoutUrl = URL(string: "https://myshopbackend.onrender.com/payment-sheet")!
-    // Your backend endpoint
-    //let backendCheckoutUrl = URL(string: "http://localhost:3002/payment-sheet")! // Your backend endpoint
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,9 +50,8 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.separatorStyle = .none
         setupGreetingLbl()
         setupCartItems()
-        //payBtn.isEnabled = false
         payBtn.tintColor = UIColor.darkGray
-        payBtn.setTitle("Loading Payment System ...", for: .normal)
+        payBtn.setTitle("Please Wait Loading Payment System ...", for: .normal)
         configurePaymentSheet()
         print(processingfee)
 
@@ -92,7 +80,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
           print("Your order is confirmed")
             DataHolder.shared.cartIndexNumbers = []
             cartItems = []
-            //cartItemIndexes = []
+            emptyCartDatabase()
             self.performSegue(withIdentifier: "toPaymentConfirmation", sender: self)
         case .canceled:
           print("Canceled!")
@@ -103,9 +91,20 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
+    private func emptyCartDatabase(){
+        
+        let database = Firestore.firestore()
+        if let user = Auth.auth().currentUser, let email = user.email {
+            let docRef = database.document("users/\(email)")
+            let cartIndexNumbers = DataHolder.shared.cartIndexNumbers
+            docRef.updateData(["cart": []])
+            }
+        }
+    
     private func setupCartItems(){
-        let cartItemIndexes = DataHolder.shared.cartIndexNumbers
-        print(cartItemIndexes)
+
+        obtainCartIndexes()
+        
         if cartItemIndexes.count == 0{
             print(processingfee)
             cartItems = []
@@ -145,9 +144,21 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.cartFinalTotalLbl.text = String(format: "A$ %.2f", cartItemPriceFeeTotal)
     }
     
+    
+    private func obtainCartIndexes(){
+        cartItemIndexes = DataHolder.shared.cartIndexNumbers
+
+    }
+    
+    
+    
     private func setupGreetingLbl(){
         let greetingManager = GreetingLabelManager()
-        greetingLbl.text = greetingManager.getGreeting()
+        DispatchQueue.main.async {
+            greetingManager.getGreeting{[self]greeting in
+                self.greetingLbl.text = greeting
+            }
+        }
     }
       
       // Number of sections
@@ -166,6 +177,8 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+       
+
         // If the cart is empty
             if cartItems.count == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell") ?? UITableViewCell(style: .default, reuseIdentifier: "EmptyCell")
@@ -175,6 +188,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
             // If the cart has items
             if let cell = tableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath) as? CartItemCell {
+               
                 let cartItem = cartItems[indexPath.row]
                 print("IndexPath.row: \(indexPath.row)")
                 if let image = cartItem["cartItemImage"] as? String, let label = cartItem["cartItemLbl"] as? String, let price = cartItem["cartItemPrice"] as? Double, let index = indexPath.row as? Int
@@ -193,6 +207,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         tableView.reloadData()
                     self?.configurePaymentSheet()
                         }
+                cell.delegate = self
                 return cell
             }
 
@@ -216,7 +231,23 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     }
-
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCartProductDetail",
+           let destinationVC = segue.destination as? CartProductDetailViewController,
+           let cell = sender as? CartItemCell {
+            //destinationVC.productIndex = 5
+            // if you want to pass dynamic index based on tapped cell you can do the following
+            let indexPath = tableView.indexPath(for: cell)
+            //destinationVC.productIndex = indexPath?.row
+            destinationVC.productIndex = cartItemIndexes[indexPath!.row]
+            }
+        }
+        
+
+    func didTapOnCellContent(cell: CartItemCell) {
+        performSegue(withIdentifier: "toCartProductDetail", sender: cell)
+    }
+
     
 }
