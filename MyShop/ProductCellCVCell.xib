@@ -18,41 +18,34 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" image="iphone" translatesAutoresizingMaskIntoConstraints="NO" id="MOK-7R-h96">
-                        <rect key="frame" x="3" y="5" width="130" height="130"/>
+                        <rect key="frame" x="-98.666666666666671" y="0.0" width="333.33333333333331" height="130"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="130" id="gGo-RR-g3h"/>
-                            <constraint firstAttribute="height" constant="130" id="vqe-rr-5dh"/>
+                            <constraint firstAttribute="height" constant="130" id="2oO-mV-9bA"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone Pro Max" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kf-0G-JzD">
-                        <rect key="frame" x="3" y="145" width="130" height="20"/>
-                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone Pro Max" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kf-0G-JzD">
+                        <rect key="frame" x="2.6666666666666714" y="140" width="130.66666666666663" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="YnM-gR-wjv"/>
-                            <constraint firstAttribute="width" constant="130" id="yU3-Hd-eht"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="19"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="19"/>
+                        <color key="textColor" red="0.81960784310000001" green="0.31764705879999999" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A$1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jag-Ej-K46">
-                        <rect key="frame" x="3" y="175" width="130" height="20.666666666666657"/>
-                        <color key="backgroundColor" red="0.81960784310000001" green="0.31764705879999999" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="130" id="RHA-s3-lTf"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A$1000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jag-Ej-K46">
+                        <rect key="frame" x="35.333333333333336" y="170" width="65.333333333333314" height="27"/>
                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="19"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" systemColor="systemBlueColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="jag-Ej-K46" firstAttribute="top" secondItem="9kf-0G-JzD" secondAttribute="bottom" constant="10" id="9RI-GC-jk5"/>
                 <constraint firstItem="9kf-0G-JzD" firstAttribute="top" secondItem="MOK-7R-h96" secondAttribute="bottom" constant="10" id="9SE-lt-h92"/>
-                <constraint firstItem="MOK-7R-h96" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="TXW-f0-hOl"/>
+                <constraint firstItem="MOK-7R-h96" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="TXW-f0-hOl"/>
+                <constraint firstAttribute="bottom" secondItem="jag-Ej-K46" secondAttribute="bottom" constant="10" id="hhP-a5-1pV"/>
                 <constraint firstItem="MOK-7R-h96" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="nZx-aN-qRv"/>
                 <constraint firstItem="9kf-0G-JzD" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="sQE-Vd-3In"/>
                 <constraint firstItem="jag-Ej-K46" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="zac-XS-eTb"/>
@@ -67,7 +60,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="iphone" width="1152.3333740234375" height="1728.3333740234375"/>
+        <image name="iphone" width="333.33334350585938" height="333.33334350585938"/>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

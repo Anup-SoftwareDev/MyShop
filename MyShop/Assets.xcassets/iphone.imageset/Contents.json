@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "isaac-martin-5Tm4YRqnNcM-unsplash@1x.png",
+      "filename" : "monitor@3x 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "isaac-martin-5Tm4YRqnNcM-unsplash@2x.png",
+      "filename" : "monitor@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "isaac-martin-5Tm4YRqnNcM-unsplash@3x.png",
+      "filename" : "monitor@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

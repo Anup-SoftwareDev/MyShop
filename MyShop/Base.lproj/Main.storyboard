@@ -24,8 +24,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ENA-43-6C1">
-                                <rect key="frame" x="15" y="163" width="400" height="735"/>
-                                <color key="backgroundColor" red="0.81960784310000001" green="0.31764705879999999" blue="0.41176470590000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="163" width="430" height="735"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="gnc-AZ-StF">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -64,9 +64,9 @@
                         <constraints>
                             <constraint firstItem="USN-Ts-oxP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="6nq-B8-9ke"/>
                             <constraint firstItem="ENA-43-6C1" firstAttribute="top" secondItem="USN-Ts-oxP" secondAttribute="bottom" constant="20" id="A07-rB-nZs"/>
-                            <constraint firstItem="ENA-43-6C1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="KMe-H1-OTS"/>
+                            <constraint firstItem="ENA-43-6C1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KMe-H1-OTS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gfh-90-Erc" secondAttribute="trailing" constant="18" id="Lx9-Bm-M6s"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ENA-43-6C1" secondAttribute="trailing" constant="15" id="R1C-mQ-SDr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ENA-43-6C1" secondAttribute="trailing" id="R1C-mQ-SDr"/>
                             <constraint firstAttribute="bottomMargin" secondItem="ENA-43-6C1" secondAttribute="bottom" id="dj4-gh-DNV"/>
                             <constraint firstItem="gfh-90-Erc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="sGg-zA-OhG"/>
                             <constraint firstItem="gfh-90-Erc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="USN-Ts-oxP" secondAttribute="trailing" constant="8" symbolic="YES" id="smK-Kn-GLB"/>
@@ -169,9 +169,8 @@
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="19"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone" translatesAutoresizingMaskIntoConstraints="NO" id="fpi-iS-NXn">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="fpi-iS-NXn">
                                         <rect key="frame" x="0.0" y="0.0" width="430" height="415"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1162,7 +1161,8 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bar_button_cart" width="27" height="24"/>
-        <image name="iphone" width="1152.3333740234375" height="1728.3333740234375"/>
+        <image name="camera" width="1438" height="952.33331298828125"/>
+        <image name="iphone" width="333.33334350585938" height="333.33334350585938"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

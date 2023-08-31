@@ -122,7 +122,7 @@ class ProductDetailViewController: UIViewController {
     private func setUpProductDetails(){
         imageView.image = UIImage(named: product.imageNames[productIndex!])
         productLbl.text = product.productNames[productIndex!]
-        priceLbl.text = "\(String(format: "A$ %.2f", product.productPrices[productIndex!]))"
+        priceLbl.text = "\(String(format: "AU $%.2f", product.productPrices[productIndex!]))"
         addCartBtn.addTarget(self, action: #selector(addItemToCart), for: .touchUpInside)
         productDescription.text = product.productDescriptions[productIndex!]
         

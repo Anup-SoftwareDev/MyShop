@@ -56,14 +56,14 @@ class BuyNowViewController: UIViewController {
         
         self.productImage.image = UIImage(named: productImage)
         self.productName.text = productName
-        self.productPrice.text = String(format: "A$ %.2f", productPrice)
+        self.productPrice.text = String(format: "AU $%.2f", productPrice)
         
         // Setup Lables
         
-        priceLbl.text = String(format: "A$ %.2f", productPrice)
-        shippingLbl.text = String(format: "A$ %.2f", shippingPrice)
-        processingFeeLbl.text = String(format: "A$ %.2f", processingFee)
-        totalFeeLbl.text = String(format: "A$ %.2f", totalPrice)
+        priceLbl.text = String(format: "AU $%.2f", productPrice)
+        shippingLbl.text = String(format: "AU $%.2f", shippingPrice)
+        processingFeeLbl.text = String(format: "AU $%.2f", processingFee)
+        totalFeeLbl.text = String(format: "AU $%.2f", totalPrice)
     
         
         setupGreetingLbl()
@@ -118,7 +118,7 @@ class BuyNowViewController: UIViewController {
                self?.paymentSheet = paymentSheet
                DispatchQueue.main.async {
                  //self?.payBtn.isEnabled = true
-                   self?.payBtn.setTitle(String(format: "Confirm and Pay - A$ %.2f", Double(amountInCents)/100), for: .normal)
+                   self?.payBtn.setTitle(String(format: "Confirm and Pay - AU $%.2f", Double(amountInCents)/100), for: .normal)
                  self?.payBtn.tintColor = UIColor.tintColor
                    
                }

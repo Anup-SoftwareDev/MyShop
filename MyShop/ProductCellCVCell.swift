@@ -48,16 +48,18 @@ class ProductCellCVCell: UICollectionViewCell {
             self.productImage.clipsToBounds = true
         
             // Set the border color, width, and optionally corner radius
-//        let customColor = UIColor(red: 0.4588, green: 0.5412, blue: 0.6353, alpha: 1.0)
-//            layer.borderColor = customColor.cgColor
-//        layer.borderWidth = 0.5
+        let customColor = UIColor(red: 189/255.0, green: 195/255.0, blue: 199/255.0, alpha: 1.0)
+        layer.borderColor = customColor.cgColor
+
+        layer.borderWidth = 0.35
+
         
         //#758AA2
     }
         
         override func layoutSubviews() {
             super.layoutSubviews()
-            self.layer.cornerRadius = self.bounds.height * 0.05
+            //self.layer.cornerRadius = self.bounds.height * 0.05
             self.clipsToBounds = true
         }
 
@@ -67,7 +69,7 @@ class ProductCellCVCell: UICollectionViewCell {
             productNameLbl.text = productNames[adjustedIndex]
             //productPriceLbl.text = "A$ \(String(productPrices[adjustedIndex]))"
             
-            productPriceLbl.text = String(format: "A$ %.2f", productPrices[adjustedIndex])
+            productPriceLbl.text = String(format: "AU $%.2f", productPrices[adjustedIndex])
         }
     }
 
