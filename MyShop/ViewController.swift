@@ -142,26 +142,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             }
         }
     }
-//    private func obtainCartIndexes(){
-//        let database = Firestore.firestore()
-//        if let user = Auth.auth().currentUser, let email = user.email {
-//            let docRef = database.document("users/\(email)")
-//            docRef.getDocument { snapshot, error in
-//                guard let data = snapshot?.data(), error == nil else{
-//                               return
-//                           }
-//
-//                guard let cartNumbers = data["cart"] as? Array<Int> else {
-//                               return
-//                           }
-//                print("Cart: \(cartNumbers)")
-//                self.cartItemIndexes = cartNumbers
-//                DataHolder.shared.cartIndexNumbers = cartNumbers
-//
-//            }
-//        }
-//
-//    }
+
 }
 
 // MARK: - UICollectionViewDataSource
@@ -184,10 +165,12 @@ extension ViewController {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Define the size of your cell here
+//        // Define the size of your cell here
         return CGSize(width: 160, height: 220) // example size
     }
  
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10 // example spacing

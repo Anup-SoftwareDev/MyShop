@@ -46,7 +46,14 @@ class ProductCellCVCell: UICollectionViewCell {
             self.productNameLbl.clipsToBounds = true
             self.productPriceLbl.clipsToBounds = true
             self.productImage.clipsToBounds = true
-        }
+        
+            // Set the border color, width, and optionally corner radius
+//        let customColor = UIColor(red: 0.4588, green: 0.5412, blue: 0.6353, alpha: 1.0)
+//            layer.borderColor = customColor.cgColor
+//        layer.borderWidth = 0.5
+        
+        //#758AA2
+    }
         
         override func layoutSubviews() {
             super.layoutSubviews()

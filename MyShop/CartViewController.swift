@@ -51,7 +51,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
         setupGreetingLbl()
         setupCartItems()
         payBtn.tintColor = UIColor.darkGray
-        payBtn.setTitle("Please Wait Loading Payment System ...", for: .normal)
+        payBtn.setTitle("Please Wait. Loading Payment System ...", for: .normal)
         configurePaymentSheet()
         print(processingfee)
 

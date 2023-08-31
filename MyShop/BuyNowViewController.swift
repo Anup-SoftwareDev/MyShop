@@ -68,7 +68,7 @@ class BuyNowViewController: UIViewController {
         
         setupGreetingLbl()
         payBtn.titleLabel?.font = UIFont.init(name: "GillSans-Italic", size: 30)
-        payBtn.setTitle("Please Wait Loading Payment System ...", for: .normal)
+        payBtn.setTitle("Please Wait. Loading Payment System ...", for: .normal)
         payBtn.tintColor = UIColor.darkGray
         //payBtn.setTitle(String(format: "Confirm and Pay - A$ %.2f", totalPrice), for: .normal)
         //payBtn.titleLabel?.font = UIFont.init(name: "GillSans-Italic", size: 30)
