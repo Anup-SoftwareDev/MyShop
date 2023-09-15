@@ -101,7 +101,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     
-    private func setupCartItems(){
+    private func setupCartItems(){ 
 
         obtainCartIndexes()
         
