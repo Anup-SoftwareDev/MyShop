@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "math-InK0X-GDjrQ-unsplash@1x.png",
+      "filename" : "camera@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "math-InK0X-GDjrQ-unsplash@2x.png",
+      "filename" : "camera@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "math-InK0X-GDjrQ-unsplash@3x.png",
+      "filename" : "camera@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

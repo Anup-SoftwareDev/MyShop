@@ -13,7 +13,6 @@ class CartItemCell: UITableViewCell {
     
     
     @IBOutlet weak var cartItemImage: UIImageView!
-    
     @IBOutlet weak var cartItemLbl: UILabel!
     
     @IBOutlet weak var CartItemPrice: UILabel!
@@ -63,7 +62,7 @@ class CartItemCell: UITableViewCell {
            
             cartItemImage.image = UIImage(named: image)
             cartItemLbl.text = label
-            CartItemPrice.text = String(format: "A$ %.2f", price)
+            CartItemPrice.text = String(format: "AU $%.2f", price)
             indexValue = index
         }
     

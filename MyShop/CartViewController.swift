@@ -101,7 +101,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     
-    private func setupCartItems(){
+    private func setupCartItems(){ 
 
         obtainCartIndexes()
         
@@ -137,11 +137,11 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
        print("Cart Items: \(cartItems)")
         self.cartItemCountLbl.text = "Total (\(cartItemIndexes.count) item/s)"
         //self.cartItemsPriceTotalLbl.text = "A$ \(cartItemsPriceTotal)"
-        self.cartItemsPriceTotalLbl.text = String(format: "A$ %.2f", cartItemsPriceTotal)
-        self.cartShippingFeeLbl.text = String(format: "A$ %.2f", shippingfee)
-        self.cartProcessingFeeLbl.text = String(format: "A$ %.2f", processingfee)
+        self.cartItemsPriceTotalLbl.text = String(format: "AU $%.2f", cartItemsPriceTotal)
+        self.cartShippingFeeLbl.text = String(format: "AU $%.2f", shippingfee)
+        self.cartProcessingFeeLbl.text = String(format: "AU $%.2f", processingfee)
         self.cartItemPriceFeeTotal = cartItemsPriceTotal + shippingfee + processingfee
-        self.cartFinalTotalLbl.text = String(format: "A$ %.2f", cartItemPriceFeeTotal)
+        self.cartFinalTotalLbl.text = String(format: "AU $%.2f", cartItemPriceFeeTotal)
     }
     
     
@@ -225,7 +225,7 @@ class CartViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self?.paymentSheet = paymentSheet
             DispatchQueue.main.async {
                 //self?.payBtn.isEnabled = true;
-                self?.payBtn.setTitle(String(format: "Confirm and Pay - A$ %.2f", Double(amountInCents)/100), for: .normal)
+                self?.payBtn.setTitle(String(format: "Confirm and Pay - AU $%.2f", Double(amountInCents)/100), for: .normal)
                 self?.payBtn.tintColor = UIColor.tintColor
                 
             }

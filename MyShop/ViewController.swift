@@ -148,33 +148,55 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 // MARK: - UICollectionViewDataSource
 extension ViewController {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
+          return 1
+      }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8 // You mentioned you want it repeated 4 times
-    }
+      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+          return 8 // You mentioned you want it repeated 4 times
+      }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCellCVCell", for: indexPath) as! ProductCellCVCell
-        // Configure cell if needed
-        cell.configure(with: indexPath.row)
-        return cell
-    }
-}
+      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCellCVCell", for: indexPath) as! ProductCellCVCell
+          // Configure cell if needed
+          cell.configure(with: indexPath.row)
+          return cell
+      }
+  }
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        // Define the size of your cell here
-        return CGSize(width: 160, height: 220) // example size
-    }
- 
-    
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10 // example spacing
-    }
+  extension ViewController: UICollectionViewDelegateFlowLayout {
+
+      
+      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+          let totalWidth = collectionView.bounds.width
+          let insets: CGFloat = 0 // If you have any insets set them here.
+          let spacingBetweenCells: CGFloat = 0 // set it to 0 for no spacing
+          
+
+          var numberOfCellsPerRow: CGFloat
+          
+          print("CollectionView Width on device \(UIDevice.current.name): \(totalWidth)")
+          print("Size class: \(traitCollection.horizontalSizeClass)")
+
+          
+          if UIDevice.current.userInterfaceIdiom == .phone {
+              // iPhone
+              numberOfCellsPerRow = 2
+          } else if UIDevice.current.userInterfaceIdiom == .pad {
+              // iPad
+              numberOfCellsPerRow = 4
+          } else {
+              
+              numberOfCellsPerRow = 2
+          }
+
+          let totalSpacing = (2 * insets) + ((numberOfCellsPerRow - 1) * spacingBetweenCells)
+          
+          let width = floor((totalWidth - totalSpacing) / numberOfCellsPerRow) + 0.45
+
+          print("Width: \(width)")
+          return CGSize(width: width, height: 220)
+      }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toProductDetail", let destinationVC = segue.destination as? ProductDetailViewController, let index = sender as? Int {

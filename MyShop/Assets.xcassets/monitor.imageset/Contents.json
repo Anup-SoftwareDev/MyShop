@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "kitai-zhvaeh-R9rA-unsplash@1x.png",
+      "filename" : "monitor@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "kitai-zhvaeh-R9rA-unsplash@2x.png",
+      "filename" : "monitor@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "kitai-zhvaeh-R9rA-unsplash@3x.png",
+      "filename" : "monitor@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
