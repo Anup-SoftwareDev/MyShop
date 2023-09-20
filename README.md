@@ -1,5 +1,7 @@
 # MyShop
-![Screenshot of the app](MyShop/Assets.xcassets/watch.imageset/watch@1x.png)## App Links
+![Screenshot of the app](MyShop/Assets.xcassets/watch.imageset/watch@1x.png)
+
+## App Links
 
 TestFlight: https://testflight.apple.com/join/tJebjWy0)
 
