@@ -1,5 +1,5 @@
 # MyShop
-![Screenshot of the app](MyShop/Assets.xcassets/watch.imageset/watch@1x.png)
+![Screenshot of the app](MyShop/ReadmePics/MyShopFront.jpg))
 
 ## App Links
 
