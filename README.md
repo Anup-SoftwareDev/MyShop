@@ -1,5 +1,5 @@
 # MyShop
-![Screenshot of the app](./ReadmePics/MyShopFront.jpg)
+![Screenshot of the app](ReadmePics/MyShopFront.jpg)
 
 ## App Links
 
